@@ -1,0 +1,18 @@
+!SESSION 2022-02-22 11:38:03.891 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-02-22 11:38:28.912
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-02-22 11:38:29.038
+!MESSAGE Log4j initialized with config file C:\Users\jvgm4\Desktop\Carrera\4Carrera\1 Cuatrimestre\SITEMAS_ELECTRONICOS_DIGITALES\TRABAJO\micros\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-02-22 11:38:34.173
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-02-22 11:42:30.834
+!MESSAGE Indexed 'trabajo_micros' (21 sources, 81 headers) in 3.02 sec: 4,402 declarations; 18,229 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0088%)
