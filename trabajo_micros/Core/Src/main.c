@@ -91,32 +91,40 @@ int debouncer(volatile int *button_int, GPIO_TypeDef *GPIO_port,
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-	if (GPIO_Pin == GPIO_PIN_3) {
+	if (GPIO_Pin == GPIO_PIN_2) { 			//2 3 4 corresponden a las luces
 		button_int = 1;
-		boton_presionado = 3;
-	} else if (GPIO_Pin == GPIO_PIN_12) {
+		boton_presionado = 2;//ON
+	} else if (GPIO_Pin == GPIO_PIN_3) {
 		button_int = 1;
-		boton_presionado = 12;
-	} else if (GPIO_Pin == GPIO_PIN_13) {
+		boton_presionado = 3;//OFF
+	} else if (GPIO_Pin == GPIO_PIN_4) {
 		button_int = 1;
-		boton_presionado = 13;
-	} else if (GPIO_Pin == GPIO_PIN_10) {
+		boton_presionado = 4;//AUTO
+	} else if (GPIO_Pin == GPIO_PIN_5) { 	//5 6 7 8 9 corresponden al toldo
 		button_int = 1;
-		boton_presionado = 10;
+		boton_presionado = 5;//ON
+	} else if (GPIO_Pin == GPIO_PIN_6) {
+		button_int = 1;
+		boton_presionado = 6;//OFF
 	} else if (GPIO_Pin == GPIO_PIN_7) {
 		button_int = 1;
-		boton_presionado = 7;
+		boton_presionado = 7;//AUTO
+	} else if (GPIO_Pin == GPIO_PIN_8) {
+		button_int = 1;
+		boton_presionado = 8;//FIN DE CARRERA ARRIBA
 	} else if (GPIO_Pin == GPIO_PIN_9) {
 		button_int = 1;
-		boton_presionado = 9;
-	} else if (GPIO_Pin == GPIO_PIN_14) {
+		boton_presionado = 9;//FIN DE CARRERA ABAJO
+	} else if (GPIO_Pin == GPIO_PIN_10) { 	//10 11 12 corresponden al humidificador
 		button_int = 1;
-		boton_presionado = 14;
-	} else if (GPIO_Pin == GPIO_PIN_15) {
+		boton_presionado = 10;//ON
+	} else if (GPIO_Pin == GPIO_PIN_11) {
 		button_int = 1;
-		boton_presionado = 15;
+		boton_presionado = 11;//OFF
+	} else if (GPIO_Pin == GPIO_PIN_12) {
+		button_int = 1;
+		boton_presionado = 12;//AUTO
 	}
-
 }
 
 /* USER CODE END 0 */
@@ -163,19 +171,44 @@ int main(void)
     /* USER CODE END WHILE */
 
 	  switch (boton_presionado) {
-	  		case 3:		//luces off
-	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_3)) {
+	  		case 2:		//luces off
+	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_2)) {
 	  				cambiarEstadoLuces(0);
 	  			}
 	  			break;
 	  		case 3:		//luces on
-	  			  			if (debouncer(&button_int, GPIOA, GPIO_PIN_3)) {
-	  			  				cambiarEstadoLuces(1);
+	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_3)) {
+	  			  	cambiarEstadoLuces(1);
 	  			}
 	  			break;
-	  		case 3:		//luces auto
-	  			  			if (debouncer(&button_int, GPIOA, GPIO_PIN_3)) {
-	  			  				cambiarEstadoLuces(2);
+	  		case 4:		//luces auto
+	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_4)) {
+	  			  	cambiarEstadoLuces(2);
+	  			}
+	  			break;
+	  		case 5:		//toldo stop
+	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_5))  {
+	  				cambiarEstadoToldo(0);
+	  			}
+	  			break;
+	  		case 6:		//toldo subir
+	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_6)) {
+	  				cambiarEstadoToldo(1);
+	  			}
+	  			break;
+	  		case 7:		//toldo bajar
+	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_7)) {
+	  				cambiarEstadoToldo(2);
+	  			}
+	  			break;
+	  		case 8:		//toldo fin carrera arriba
+	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_8)) {
+	  			  	cambiarEstadoToldo(3);
+	  			}
+	  			break;
+	  		case 9:		//toldo fin carrera abajo
+	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_9)) {
+	  			  	cambiarEstadoToldo(4);
 	  			}
 	  			break;
 	  }
