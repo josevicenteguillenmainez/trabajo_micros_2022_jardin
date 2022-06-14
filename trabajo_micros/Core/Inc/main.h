@@ -19,9 +19,7 @@
   */
 /* USER CODE END Header */
 
-/*texto de prueba xd*/
-
-//prueba2
+//prueba definitiva
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __MAIN_H
