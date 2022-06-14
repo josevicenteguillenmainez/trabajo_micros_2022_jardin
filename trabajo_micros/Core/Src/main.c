@@ -23,6 +23,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "Luces.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,6 +59,66 @@ static void MX_ADC1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+//Interrupciones botones:
+volatile int button_int = 0;
+int boton_presionado = 0;
+//Antirrebotes botones:
+int debouncer(volatile int *button_int, GPIO_TypeDef *GPIO_port,
+		uint16_t GPIO_number) {
+	static uint8_t button_count = 0;
+	static int counter = 0;
+
+	if (*button_int == 1) {
+		if (button_count == 0) {
+			counter = HAL_GetTick();
+			button_count++;
+		}
+		if (HAL_GetTick() - counter >= 20) {
+			counter = HAL_GetTick();
+			if (HAL_GPIO_ReadPin(GPIO_port, GPIO_number) != 1) {
+				button_count = 1;
+			} else {
+				button_count++;
+			}
+			if (button_count == 4) { //Periodo antirebotes
+				button_count = 0;
+				*button_int = 0;
+				return 1;
+			}
+		}
+	}
+	return 0;
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+	if (GPIO_Pin == GPIO_PIN_3) {
+		button_int = 1;
+		boton_presionado = 3;
+	} else if (GPIO_Pin == GPIO_PIN_12) {
+		button_int = 1;
+		boton_presionado = 12;
+	} else if (GPIO_Pin == GPIO_PIN_13) {
+		button_int = 1;
+		boton_presionado = 13;
+	} else if (GPIO_Pin == GPIO_PIN_10) {
+		button_int = 1;
+		boton_presionado = 10;
+	} else if (GPIO_Pin == GPIO_PIN_7) {
+		button_int = 1;
+		boton_presionado = 7;
+	} else if (GPIO_Pin == GPIO_PIN_9) {
+		button_int = 1;
+		boton_presionado = 9;
+	} else if (GPIO_Pin == GPIO_PIN_14) {
+		button_int = 1;
+		boton_presionado = 14;
+	} else if (GPIO_Pin == GPIO_PIN_15) {
+		button_int = 1;
+		boton_presionado = 15;
+	}
+
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -90,6 +152,8 @@ int main(void)
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 
+  setLuces(0);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -97,6 +161,25 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
+	  switch (boton_presionado) {
+	  		case 3:		//luces off
+	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_3)) {
+	  				cambiarEstadoLuces(0);
+	  			}
+	  			break;
+	  		case 3:		//luces on
+	  			  			if (debouncer(&button_int, GPIOA, GPIO_PIN_3)) {
+	  			  				cambiarEstadoLuces(1);
+	  			}
+	  			break;
+	  		case 3:		//luces auto
+	  			  			if (debouncer(&button_int, GPIOA, GPIO_PIN_3)) {
+	  			  				cambiarEstadoLuces(2);
+	  			}
+	  			break;
+	  }
+	  luces();
 
     /* USER CODE BEGIN 3 */
   }
