@@ -1,0 +1,39 @@
+!SESSION 2022-06-15 20:18:38.160 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  C:\Users\Usuario\Desktop\TrabajoSED\trabajo_micros\Core\Inc\Luces.h
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\Usuario\Desktop\TrabajoSED\trabajo_micros\Core\Inc\Luces.h
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-06-15 20:19:05.067
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-06-15 20:19:05.303
+!MESSAGE Log4j initialized with config file C:\Users\Usuario\Desktop\TrabajoSED\trabajo_micros\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-06-15 20:19:20.835
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.resources 4 77 2022-06-15 20:30:47.156
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2022-06-15 20:30:47.156
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2022-06-15 20:30:47.156
+!MESSAGE C:\Users\Usuario\Desktop\TrabajoSED\trabajo_micros overlaps the workspace location: C:\Users\Usuario\Desktop\TrabajoSED\trabajo_micros
+!SESSION 2022-06-15 20:32:13.239 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  C:\Users\Usuario\Desktop\TrabajoSED\trabajo_micros\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\Usuario\Desktop\TrabajoSED\trabajo_micros\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-06-15 20:32:19.463
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-06-15 20:32:19.506
+!MESSAGE Log4j initialized with config file C:\Users\Usuario\Desktop\TrabajoSED\trabajo_micros\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-06-15 20:32:27.878
+!MESSAGE Started RMI Server, listening on port 41337

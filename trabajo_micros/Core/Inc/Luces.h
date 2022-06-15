@@ -14,7 +14,7 @@ ADC_HandleTypeDef hadc1;
 int estado_luces=0;//0 off 1 on 2 auto
 int8_t adcval[10];
 uint32_t counter_luces=0, tickstart_luces=0;
-int umbral_luces=50;
+int umbral_luces=80;
 uint32_t media_ldr=0;
 
 void setLuces(int n){
