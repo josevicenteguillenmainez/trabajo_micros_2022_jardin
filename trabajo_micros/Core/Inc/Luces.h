@@ -61,9 +61,9 @@ void medirLDR(){
 		}
 		media_ldr=media_ldr/5;
 			if(media_ldr>(umbral_luces+5)){
-				  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
+				  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET);
 			}else if(media_ldr<(umbral_luces-5)) {
-				  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);
+				  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET);
 			}
 	}else{
 		counter_luces=HAL_GetTick()-tickstart_luces;

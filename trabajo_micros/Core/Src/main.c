@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 
 #include "Luces.h"
+#include "Toldo.h"
 
 /* USER CODE END Includes */
 
@@ -89,7 +90,7 @@ int debouncer(volatile int *button_int, GPIO_TypeDef *GPIO_port,
 	}
 	return 0;
 }
-
+//todos los pulsadores y finales de carrera
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if (GPIO_Pin == GPIO_PIN_2) { 			//2 3 4 corresponden a las luces
 		button_int = 1;
