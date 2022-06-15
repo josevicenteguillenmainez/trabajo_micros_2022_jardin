@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "Luces.h"
 #include "Toldo.h"
+#include "Humidificador.h"
 
 /* USER CODE END Includes */
 
@@ -44,6 +45,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
+TIM_HandleTypeDef htim6;
 
 /* USER CODE BEGIN PV */
 
