@@ -92,6 +92,8 @@ int debouncer(volatile int *button_int, GPIO_TypeDef *GPIO_port,
 }
 //todos los pulsadores y finales de carrera
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, 1);
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, 1);
 	if (GPIO_Pin == GPIO_PIN_2) { 			//2 3 4 corresponden a las luces
 		button_int = 1;
 		boton_presionado = 2;//OFF
@@ -217,17 +219,17 @@ int main(void)
 	  	  			  	cambiarEstadoToldo(4);
 	  	  			}
 	  	  			break;
-	  	  		case 7:		//toldo bajar
+	  	  		case 10:		//toldo bajar
 	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_7)) {
 	  	  			  	cambiarEstadoToldo(2);
 	  	  			}
 	  	  			break;
-	  	  		case 8:		//toldo fin carrera arriba
+	  	  		case 11:		//toldo fin carrera arriba
 	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_8)) {
 	  	  			  	cambiarEstadoToldo(3);
 	  	  			}
 	  	  			break;
-	  	  		case 9:		//toldo fin carrera abajo
+	  	  		case 12:		//toldo fin carrera abajo
 	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_9)) {
 	  	  			  	cambiarEstadoToldo(4);
 	  	  			}
