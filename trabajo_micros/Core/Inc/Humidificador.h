@@ -138,6 +138,7 @@ void lectura_dht11() {
 	  	SUM = DHT11_Read();
 	  	TEMP = Temp_byte1;
 	  	Temperature = (float) TEMP;
+	  	Temperature = (17-Temperature)+30;
 	  }
 
 #endif /* INC_HUMIDIFICADOR_H_ */
