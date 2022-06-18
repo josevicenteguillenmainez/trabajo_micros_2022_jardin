@@ -61,8 +61,8 @@ all: main-build
 main-build: trabajo_micros.elf secondary-outputs
 
 # Tool invocations
-trabajo_micros.elf: $(OBJS) $(USER_OBJS) C:\Users\Usuario\Desktop\TrabajoSED\trabajo_micros\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "trabajo_micros.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Usuario\Desktop\TrabajoSED\trabajo_micros\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="trabajo_micros.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+trabajo_micros.elf: $(OBJS) $(USER_OBJS) C:\Users\jvgm4\Documents\GitHub\trabajo_micros_2022_jardin\trabajo_micros\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "trabajo_micros.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\jvgm4\Documents\GitHub\trabajo_micros_2022_jardin\trabajo_micros\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="trabajo_micros.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
