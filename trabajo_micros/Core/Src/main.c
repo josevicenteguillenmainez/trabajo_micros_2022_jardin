@@ -126,9 +126,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	} else if (GPIO_Pin == GPIO_PIN_11) {
 		button_int = 1;
 		boton_presionado = 11;//ON
-	} else if (GPIO_Pin == GPIO_PIN_12) {
+	} else if (GPIO_Pin == GPIO_PIN_13) {
 		button_int = 1;
-		boton_presionado = 12;//AUTO
+		boton_presionado = 13;//AUTO
 	}
 }
 
@@ -223,17 +223,17 @@ int main(void)
 	  	  			}
 	  	  			break;
 	  	  		case 10:		//humidificador off
-	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_10)) {
+	  	  			if (debouncer(&button_int, GPIOB, GPIO_PIN_10)) {
 	  	  				setEstadoHumidificador(0);
 	  	  			}
 	  	  			break;
 	  	  		case 11:		//humidificador on
-	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_11)) {
+	  	  			if (debouncer(&button_int, GPIOB, GPIO_PIN_11)) {
 	  	  				setEstadoHumidificador(1);
 	  	  			}
 	  	  			break;
 	  	  		case 12:		//humidificador auto
-	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_12)) {
+	  	  			if (debouncer(&button_int, GPIOB, GPIO_PIN_13)) {
 	  	  				setEstadoHumidificador(2);
 	  	  			}
 	  	  			break;
