@@ -169,6 +169,7 @@ int main(void)
 
   setLuces(0);
   cambiarEstadoToldo(0);
+  setEstadoHumidificador(0);
   HAL_TIM_Base_Start(&htim6);
 
 
@@ -221,19 +222,19 @@ int main(void)
 	  	  			  	cambiarEstadoToldo(4);
 	  	  			}
 	  	  			break;
-	  	  		case 10:		//toldo bajar
-	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_7)) {
-	  	  			  	cambiarEstadoToldo(2);
+	  	  		case 10:		//humidificador off
+	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_10)) {
+	  	  				setEstadoHumidificador(0);
 	  	  			}
 	  	  			break;
-	  	  		case 11:		//toldo fin carrera arriba
-	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_8)) {
-	  	  			  	cambiarEstadoToldo(3);
+	  	  		case 11:		//humidificador on
+	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_11)) {
+	  	  				setEstadoHumidificador(1);
 	  	  			}
 	  	  			break;
-	  	  		case 12:		//toldo fin carrera abajo
-	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_9)) {
-	  	  			  	cambiarEstadoToldo(4);
+	  	  		case 12:		//humidificador auto
+	  	  			if (debouncer(&button_int, GPIOA, GPIO_PIN_12)) {
+	  	  				setEstadoHumidificador(2);
 	  	  			}
 	  	  			break;
 	  	  }
