@@ -15,7 +15,7 @@ uint16_t SUM, TEMP;
 float Temperature = 0;
 uint8_t Presence = 0;
 
-int temperatura_referencia=10;
+int temperatura_referencia=40;
 int estado_humidificador=0; //0 off, 1 on, 2 auto
 uint32_t tickstart_humidificador=0, counter_humidificador=0;
 
@@ -51,9 +51,9 @@ void Humidificador(){
 		counter_humidificador=0;
 		tickstart_humidificador=HAL_GetTick();
 		lectura_dht11();
-		if(Temperature<(temperatura_referencia-1)){
+		if(Temperature>(temperatura_referencia-1)){
 				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);
-		}else if(Temperature>(temperatura_referencia+1)) {
+		}else if(Temperature<(temperatura_referencia+1)) {
 				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET);
 		}
 	}else{
