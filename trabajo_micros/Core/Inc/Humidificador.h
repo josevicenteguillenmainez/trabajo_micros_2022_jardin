@@ -18,6 +18,7 @@ uint8_t Presence = 0;
 int temperatura_referencia=40;
 int estado_humidificador=0; //0 off, 1 on, 2 auto
 uint32_t tickstart_humidificador=0, counter_humidificador=0;
+uint32_t tickstart_humidificador_on=0, counter_humidificador_on=0;
 
 /******************FUNCIONES DE HUMIDIFICADOR**************************/
 
@@ -56,10 +57,18 @@ void Humidificador(){
 		}else if(Temperature<(temperatura_referencia+1)) {
 				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET);
 		}
+	}else if(estado_humidificador==1 && counter_humidificador>20000){
+		counter_humidificador_on=0;
+		tickstart_humidificador_on=HAL_GetTick();
+		setEstadoHumidificador(0);
 	}else{
+
+		counter_humidificador_on=HAL_GetTick()-tickstart_humidificador_on;
 		counter_humidificador=HAL_GetTick()-tickstart_humidificador;
 	}
 }
+
+
 
 void delay(uint16_t time) {
 	__HAL_TIM_SET_COUNTER(&htim6, 0);
