@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  00020014  2**0
                   CONTENTS, READONLY
- 13 .debug_info   0000e659  00000000  00000000  00020044  2**0
+ 13 .debug_info   0000e67d  00000000  00000000  00020044  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00001cea  00000000  00000000  0002e69d  2**0
+ 14 .debug_abbrev 00001cea  00000000  00000000  0002e6c1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000df0  00000000  00000000  00030388  2**3
+ 15 .debug_aranges 00000df0  00000000  00000000  000303b0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_ranges 00000d78  00000000  00000000  00031178  2**3
+ 16 .debug_ranges 00000d78  00000000  00000000  000311a0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  00021787  00000000  00000000  00031ef0  2**0
+ 17 .debug_macro  00021787  00000000  00000000  00031f18  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000fc2d  00000000  00000000  00053677  2**0
+ 18 .debug_line   0000fc2e  00000000  00000000  0005369f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000d377f  00000000  00000000  000632a4  2**0
+ 19 .debug_str    000d37b3  00000000  00000000  000632cd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000053  00000000  00000000  00136a23  2**0
+ 20 .comment      00000053  00000000  00000000  00136a80  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00003b70  00000000  00000000  00136a78  2**2
+ 21 .debug_frame  00003b70  00000000  00000000  00136ad4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -596,7 +596,7 @@ void luces(){
 08000660 <setEstadoToldo>:
 
 int estado_toldo=0; //0 parado, 1 subiendo, 2 bajando
-int flag_subida=0;	//flags que indican si el toldo está totalmente subido o bajado
+int flag_subida=0;	//flags que indican si el toldo estï¿½ totalmente subido o bajado
 int flag_bajada=0;
 
 void setEstadoToldo(int n){
@@ -608,7 +608,7 @@ void setEstadoToldo(int n){
  8000668:	4a19      	ldr	r2, [pc, #100]	; (80006d0 <setEstadoToldo+0x70>)
  800066a:	687b      	ldr	r3, [r7, #4]
  800066c:	6013      	str	r3, [r2, #0]
-	if(estado_toldo==0){
+	if(estado_toldo==0){//parado
  800066e:	4b18      	ldr	r3, [pc, #96]	; (80006d0 <setEstadoToldo+0x70>)
  8000670:	681b      	ldr	r3, [r3, #0]
  8000672:	2b00      	cmp	r3, #0
@@ -624,13 +624,13 @@ void setEstadoToldo(int n){
  8000684:	4813      	ldr	r0, [pc, #76]	; (80006d4 <setEstadoToldo+0x74>)
  8000686:	f001 fe65 	bl	8002354 <HAL_GPIO_WritePin>
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
-	}else if(estado_toldo==2){
+	}else if(estado_toldo==2){//bajando
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);
 	}
 }
  800068a:	e01c      	b.n	80006c6 <setEstadoToldo+0x66>
-	}else if(estado_toldo==1){
+	}else if(estado_toldo==1){//subiendo
  800068c:	4b10      	ldr	r3, [pc, #64]	; (80006d0 <setEstadoToldo+0x70>)
  800068e:	681b      	ldr	r3, [r3, #0]
  8000690:	2b01      	cmp	r3, #1
@@ -647,7 +647,7 @@ void setEstadoToldo(int n){
  80006a4:	f001 fe56 	bl	8002354 <HAL_GPIO_WritePin>
 }
  80006a8:	e00d      	b.n	80006c6 <setEstadoToldo+0x66>
-	}else if(estado_toldo==2){
+	}else if(estado_toldo==2){//bajando
  80006aa:	4b09      	ldr	r3, [pc, #36]	; (80006d0 <setEstadoToldo+0x70>)
  80006ac:	681b      	ldr	r3, [r3, #0]
  80006ae:	2b02      	cmp	r3, #2
@@ -759,8 +759,8 @@ void cambiarEstadoToldo(int n){
  800075c:	20000048 	.word	0x20000048
 
 08000760 <setEstadoHumidificador>:
-int estado_humidificador=0; //0 off, 1 on, 2 auto
 uint32_t tickstart_humidificador=0, counter_humidificador=0;
+uint32_t tickstart_humidificador_on=0, counter_humidificador_on=0;
 
 /******************FUNCIONES DE HUMIDIFICADOR**************************/
 
@@ -918,8 +918,7 @@ void Humidificador(){
 	if(estado_humidificador==2 && counter_humidificador>2000){
  8000872:	e008      	b.n	8000886 <Humidificador+0x92>
 		}
-	}else{
-		counter_humidificador=HAL_GetTick()-tickstart_humidificador;
+	}else{counter_humidificador=HAL_GetTick()-tickstart_humidificador;}
  8000874:	f000 fecc 	bl	8001610 <HAL_GetTick>
  8000878:	4602      	mov	r2, r0
  800087a:	4b06      	ldr	r3, [pc, #24]	; (8000894 <Humidificador+0xa0>)
@@ -927,7 +926,11 @@ void Humidificador(){
  800087e:	1ad3      	subs	r3, r2, r3
  8000880:	4a03      	ldr	r2, [pc, #12]	; (8000890 <Humidificador+0x9c>)
  8000882:	6013      	str	r3, [r2, #0]
-	}
+		tickstart_humidificador_on=HAL_GetTick();
+		setEstadoHumidificador(0);
+	}else if(estado_humidificador==1 && counter_humidificador_on<20000){
+		counter_humidificador_on=HAL_GetTick()-tickstart_humidificador_on;
+	}*/
 }
  8000884:	bf00      	nop
  8000886:	bf00      	nop
@@ -941,6 +944,8 @@ void Humidificador(){
  80008a0:	40020400 	.word	0x40020400
 
 080008a4 <delay>:
+
+
 
 void delay(uint16_t time) {
  80008a4:	b480      	push	{r7}
@@ -1266,12 +1271,12 @@ void lectura_dht11() {
  8000ac6:	eef8 7a67 	vcvt.f32.u32	s15, s15
  8000aca:	4b0e      	ldr	r3, [pc, #56]	; (8000b04 <lectura_dht11+0x88>)
  8000acc:	edc3 7a00 	vstr	s15, [r3]
-	  	Temperature = (17-Temperature)+30;
+	  	Temperature = (17-Temperature)+25;
  8000ad0:	4b0c      	ldr	r3, [pc, #48]	; (8000b04 <lectura_dht11+0x88>)
  8000ad2:	edd3 7a00 	vldr	s15, [r3]
  8000ad6:	eeb3 7a01 	vmov.f32	s14, #49	; 0x41880000  17.0
  8000ada:	ee77 7a67 	vsub.f32	s15, s14, s15
- 8000ade:	eeb3 7a0e 	vmov.f32	s14, #62	; 0x41f00000  30.0
+ 8000ade:	eeb3 7a09 	vmov.f32	s14, #57	; 0x41c80000  25.0
  8000ae2:	ee77 7a87 	vadd.f32	s15, s15, s14
  8000ae6:	4b07      	ldr	r3, [pc, #28]	; (8000b04 <lectura_dht11+0x88>)
  8000ae8:	edc3 7a00 	vstr	s15, [r3]

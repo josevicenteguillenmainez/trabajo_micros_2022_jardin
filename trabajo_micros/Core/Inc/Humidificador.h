@@ -58,13 +58,13 @@ void Humidificador(){
 				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET);
 		}
 	}else{counter_humidificador=HAL_GetTick()-tickstart_humidificador;}
-		if(estado_humidificador==1 && counter_humidificador_on>20000){
+		/*if(estado_humidificador==1 && counter_humidificador_on>=20000){
 		counter_humidificador_on=0;
 		tickstart_humidificador_on=HAL_GetTick();
 		setEstadoHumidificador(0);
-	}else{
+	}else if(estado_humidificador==1 && counter_humidificador_on<20000){
 		counter_humidificador_on=HAL_GetTick()-tickstart_humidificador_on;
-	}
+	}*/
 }
 
 
@@ -146,7 +146,7 @@ void lectura_dht11() {
 	  	SUM = DHT11_Read();
 	  	TEMP = Temp_byte1;
 	  	Temperature = (float) TEMP;
-	  	Temperature = (17-Temperature)+30;
+	  	Temperature = (17-Temperature)+25;
 	  }
 
 #endif /* INC_HUMIDIFICADOR_H_ */
